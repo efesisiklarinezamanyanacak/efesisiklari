@@ -1,0 +1,251 @@
+<!doctype html>
+<html class="no-js" lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Efes Gece Müzeciliği">
+  <meta name="keywords" content="efes ışıkları, efes gece müzeciliği, efes antik kent, gün batımı izmir, selçuk turizm">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Efes Gece Müzeciliği</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Lato', sans-serif;
+      color: white;
+      background-color: #000;
+    }
+
+    /* Hero alanı */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 60vh;
+      overflow: hidden;
+    }
+
+    .hero video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero .overlay {
+      position: absolute;
+      top:0; left:0;
+      width:100%; height:100%;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.15));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 0px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem;
+      margin-bottom: 15px;
+      color: #ffcc00;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.75);
+      letter-spacing: 1px;
+    }
+
+    .light-label {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      color: #f1f1f1;
+      font-weight: 400;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+    }
+
+    .hero .time {
+      font-size: 2.2rem;
+      font-weight: 700;
+      font-family: 'Lato', sans-serif;
+      color: #ffcc00;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+    }
+
+    main {
+      padding: 40px 20px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .countdown {
+      font-size: 1.6rem;
+      margin-bottom: 25px;
+      font-weight: 500;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
+      font-size: 1rem;
+      color: #ccc;
+      font-weight: 400;
+    }
+
+    a {
+      color: #ffcc00;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* Hamburger Menü */
+    .menu-toggle {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    .menu-toggle div {
+      width: 28px;
+      height: 3px;
+      background: #ffcc00;
+      margin: 6px 0;
+      transition: 0.4s;
+    }
+
+    .side-menu {
+      position: fixed;
+      top: 0;
+      left: -290px;
+      width: 250px;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      padding: 60px 20px;
+      transition: left 0.3s ease;
+      z-index: 999;
+    }
+    .side-menu.open {
+      left: 0;
+    }
+    .side-menu a {
+      display: block;
+      margin: 15px 0;
+      font-size: 1.2rem;
+      color: #ffcc00;
+      text-decoration: none;
+    }
+
+    @media(max-width:768px){
+      .hero h1 { font-size: 2.2rem; }
+      .hero .time { font-size: 1.6rem; }
+      .countdown { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Menü Butonu -->
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+  <!-- Yan Menü -->
+  <nav class="side-menu" id="sideMenu">
+    <a href="gece.html">🌙 Gece Müzeciliği Bilgisi</a>
+    <a href="hakkinda.html">📖 Hakkında</a>
+  </nav>
+
+  <!-- Hero video -->
+  <div class="hero">
+    <video autoplay muted loop playsinline>
+      <source src="isik.mp4" type="video/mp4">
+      Tarayıcınız video etiketini desteklemiyor.
+    </video>
+    <div class="overlay">
+      <h1 id="title">Efes Gece Müzeciliği</h1>
+      <div id="light-label" class="light-label">Işıklar şu saatte yanacak:</div>
+      <div class="time" id="light-time">--:--:--</div>
+    </div>
+  </div>
+
+  <!-- İçerik -->
+  <main>
+    <div class="countdown">
+      <span id="countdown-text">Işıkların yanmasına kalan süre:</span> 
+      <span id="countdown">--:--:--</span>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p id="footer">
+      📍 <a href="https://maps.google.com/?q=Efes+Antik+Kenti" target="_blank">Konum (Google Maps)</a>
+      | ☁️ <a href="https://www.mgm.gov.tr/tahmin/il-ve-ilceler.aspx?il=%C4%B0zmir&ilce=Sel%C3%A7uk" target="_blank">Hava Durumu</a>
+    </p>
+    <p id="disclaimer">Not: Belirtilen süre tahminidir, resmi bir veriye dayanmamaktadır.</p>
+  </footer>
+
+  <!-- Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/suncalc/1.9.0/suncalc.min.js"></script>
+  <script>
+    const lat = 37.9405; 
+    const lon = 27.3409; 
+    let sunsetTime = null;
+
+    function toggleMenu(){
+      document.getElementById("sideMenu").classList.toggle("open");
+    }
+
+    function calculateSunset() {
+      const today = new Date();
+      let sunset = SunCalc.getTimes(today, lat, lon).sunset;
+      sunset.setMinutes(sunset.getMinutes()-2);
+      sunsetTime = sunset;
+
+      const h = sunset.getHours().toString().padStart(2,'0');
+      const m = sunset.getMinutes().toString().padStart(2,'0');
+      const s = sunset.getSeconds().toString().padStart(2,'0');
+      document.getElementById("light-time").textContent = `${h}:${m}:${s}`;
+    }
+
+    function updateCountdown(){
+      if(!sunsetTime) return;
+      const now = new Date();
+      let diff = (sunsetTime-now)/1000;
+      if(diff<=0){
+        document.getElementById("countdown").textContent = "Işıklar yanıyor!";
+        return;
+      }
+      const hrs = Math.floor(diff/3600).toString().padStart(2,'0');
+      diff %=3600;
+      const mins = Math.floor(diff/60).toString().padStart(2,'0');
+      const secs = Math.floor(diff%60).toString().padStart(2,'0');
+      document.getElementById("countdown").textContent = `${hrs}:${mins}:${secs}`;
+    }
+
+    function scheduleDailyUpdate(){
+      const now = new Date();
+      const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1,0,0,5);
+      setTimeout(()=>{
+        calculateSunset();
+        scheduleDailyUpdate();
+      },tomorrow-now);
+    }
+
+    window.onload = ()=>{
+      calculateSunset();
+      setInterval(updateCountdown,1000);
+      scheduleDailyUpdate();
+    }
+  </script>
+</body>
+</html>
